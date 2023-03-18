@@ -1,8 +1,10 @@
 /* 
-    'margin: 0;' : Sets the margin (the space outside the element) to 0 for all sides.
-    'padding: 0' ;: Sets the padding (the space inside the element, between its content and its border) to 0 for all sides.
-    'box-sizing: border-box;' : Sets the box sizing to border-box, which means that the width and height of the element will include the padding and border, rather than just the content. This can be helpful when sizing elements so that they fit together neatly.
-    'list-style: none;' : Removes the default list-style (bullet points or numbering) from list items.
+GLOBAL STYLE
+    '*'                         : This is a universal selector that selects all elements on the page.
+    'margin: 0;'                : This sets the margin property of all elements to 0, effectively removing any default margins.
+    'padding: 0;'               : This sets the padding property of all elements to 0, effectively removing any default padding.
+    'box-sizing: border-box;'   : This sets the box-sizing property of all elements to border-box, which tells the browser to include the element's border and padding in its total width and height calculations.
+    'list-style: none;'         : This removes any default list styles from ul and ol elements, such as bullets or numbers.
 */
 * {
   margin: 0;
@@ -11,6 +13,8 @@
   list-style: none;
 }
 
+/* CSS variables */
+/* The :root pseudo-class is used to target the root element of the document, which is typically the <html> element. */
 :root {
   --color-primary: #191d2b;
   --color-secondary: #27AE60;
@@ -24,10 +28,132 @@
   --color-grey-5: #2a2e35;
   --color-grey-6: #12181b;
   --br-sm-2: 14px;
+  --transition-all: all .4s ease-in-out;
+  --box-shadow-1: 0 3px 15px rgba(0,0,0,.3);
 }
 
+/* BODY STYLES */
+/* 
+        'background-color': var(--color-primary);'  : This sets the background color of the body element to the value of the --color-primary custom variable, which has been previously defined elsewhere in the CSS file.
+        'font-family: 'Poppins', sans-serif;'       : This sets the font family of the body element to 'Poppins', a popular sans-serif font, followed by a fallback sans-serif in case 'Poppins' is not available on the user's device.
+        'font-size: 1.1rem;'                        : This sets the font size of the body element to 1.1rem, which is equivalent to 16.5px at the default browser font size.
+        'color: var(--color-white);'                : This sets the font color of the body element to the value of the --color-white custom variable, which has been previously defined elsewhere in the CSS file.
+        'transition: all .4s ease-in-out;'          : This sets a transition effect for all properties that are changed on the body element, with a duration of .4s and an easing function of ease-in-out. This creates a smooth transition effect when styles are changed dynamically using JavaScript or CSS pseudo-classes like :hover.
+*/
 body {
+  /* assigning '--color-primary' variable to background-color */
   background-color: var(--color-primary);
   font-family: "Poppins", sans-serif;
   font-size: 1.1rem;
+  color: var(--color-white);
+  transition: all 0.4s ease-in-out;
+}
+
+/*
+BASIC STYLE FOR ALL ANCHOR TAGS
+    'display: inline-block;'  : This sets the display property of the a element to inline-block, which allows it to be positioned inline with other elements while also having a block-level width and height. This can be useful for creating responsive navigation menus or other UI elements.
+    'text-decoration: none;'  : This removes the default underline text decoration that is applied to anchor elements, making them appear cleaner and more visually appealing.
+    'color: inherit;'         : This sets the color of the a element to inherit the color of its parent element, which can help maintain consistency and avoid the need for additional color declarations.
+    'font-family: inherit;'   : This sets the font family of the a element to inherit the font family of its parent element, which can help maintain consistency and avoid the need for additional font family declarations.
+*/
+a {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+  font-family: inherit;
+}
+
+header {
+  height: 100vh;
+  color: var(--color-white);
+  overflow: hidden;
+}
+
+/* 
+BASIC STYLE FOR ALL SECTION TAGS
+    'min-height: 100vh;'     : This sets the minimum height of the section element to 100 viewport height units, which ensures that the section will take up at least the full height of the viewport (i.e., the visible area of the web page).
+    'width: 100%;'           : This sets the width of the section element to 100% of its parent element, which in this case is likely the body element or another containing element.
+    'position: absolute;'    : This sets the position property of the section element to absolute, which positions the element relative to its nearest positioned ancestor element (or the initial containing block if there is none). This allows the section to be positioned independently of other elements on the page.
+    'left: 0;'               : This sets the left property of the section element to 0, which positions the element flush against the left edge of its containing element
+    'top: 0;'                : This sets the top property of the section element to 0, which positions the element flush against the top edge of its containing element.
+    'padding: 3rem 18rem;'   : This sets the padding of the section element to 3rem (i.e., 3 times the value of the root font size) on the top and bottom and 18rem on the left and right. This creates some space around the content inside the section and helps to visually separate it from other elements on the page.
+*/
+section {
+  min-height: 100vh;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 3rem 18rem;
+}
+
+.section {
+  transform: translateY(-100%);
+  transition: var(--transition-all);
+  background-color: var(--color-primary);
+}
+
+.sec1 {
+  display: none;
+  transform: translateY(0) scale(1);
+}
+
+.sec2 {
+  display: none;
+  transform: translateY(0) scale(1);
+}
+
+.sec3 {
+  display: none;
+  transform: translateY(0) scale(1);
+}
+
+.sec4 {
+  display: none;
+  transform: translateY(0) scale(1);
+}
+
+.sec5 {
+  display: none;
+  transform: translateY(0) scale(1);
+}
+
+/* 
+CONTROLS
+*/
+.controlls {
+  position: fixed;
+  z-index: 10;
+  top: 50%;
+  right: 3%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-50%);
+}
+.controlls .active-btn {
+  background-color: var(--color-secondary) !important;
+  transition: var(--transition-all);
+}
+.controlls .active-btn i {
+  color: var(--color-white) !important;
+}
+.controlls .control {
+  padding: 1rem;
+  cursor: pointer;
+  background-color: var(--color-grey-4);
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.7rem;
+  box-shadow: var(--box-shadow-1);
+}
+.controlls .control i {
+  font-size: 1.2rem;
+  color: var(--color-grey-2);
+  pointer-events: none;
 }/*# sourceMappingURL=styles.css.map */
